@@ -7,13 +7,13 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <meta name="author" content="John Doe">
+    <meta name="author" content="睡个好觉">
 
 
 
 
 
-<title>测试 | Hexo</title>
+<title>约束 | Hexo</title>
 
 
 
@@ -193,37 +193,58 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">测试</h1>
+            <h1 class="post-title">约束</h1>
             
                 <div class="post-meta">
                     
-                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                        Author: <a itemprop="author" rel="author" href="/">睡个好觉</a>
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">March 18, 2026&nbsp;&nbsp;10:08:16</a>
+                        Date: <a href="#">March 18, 2026&nbsp;&nbsp;19:49:35</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/MySQL/">MySQL</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h3 id="1-标题？"><a href="#1-标题？" class="headerlink" title="1.标题？"></a>1.标题？</h3><ul>
-<li>first</li>
-<li>second</li>
-</ul>
-<hr>
-<h3 id="2-标题2"><a href="#2-标题2" class="headerlink" title="2.标题2"></a>2.标题2</h3><ul>
-<li><strong>加粗</strong><blockquote>
-<p><em>斜体</em></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="3-标题三"><a href="#3-标题三" class="headerlink" title="3.标题三"></a>3.标题三</h3><p>wwww<br>呜呜呜呜</p>
-<p>hhhh</p>
+            <h1 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h1><h2 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h2><p>primary key：主键唯一且非空</p>
+<p>使用场景：通常用于 ID 字段</p>
+<h3 id="方式1：创建表时设置主键"><a href="#方式1：创建表时设置主键" class="headerlink" title="方式1：创建表时设置主键"></a>方式1：创建表时设置主键</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> student1(    </span><br><span class="line">	id <span class="type">INT</span> <span class="keyword">PRIMARY KEY</span> ,   </span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">20</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">CREATE TABLE</span> student2(   </span><br><span class="line">	id <span class="type">INT</span>,   </span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">20</span>),  </span><br><span class="line">    <span class="keyword">PRIMARY KEY</span> (id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式2：创建表后设置主键"><a href="#方式2：创建表后设置主键" class="headerlink" title="方式2：创建表后设置主键"></a>方式2：创建表后设置主键</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER TABLE</span> student3 <span class="keyword">ADD</span> <span class="keyword">PRIMARY KEY</span> (id);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="非空"><a href="#非空" class="headerlink" title="非空"></a>非空</h2><p> not null：限制字段的值不能为 null</p>
+<p>使用场景：用于必须填写的业务关键字段，如姓名、身份证号等</p>
+<h2 id="唯一"><a href="#唯一" class="headerlink" title="唯一"></a>唯一</h2><p> unique：保证字段中所有的值都是唯一的，不允许重复</p>
+<p>使用场景：用于不能重复的字段，如邮箱、身份证号、手机号等</p>
+<h2 id="默认"><a href="#默认" class="headerlink" title="默认"></a>默认</h2><p> default：当插入数据未为该字段赋值时，会自动使用默认值填充</p>
+<p>使用场景：用于有默认状态的字段，如性别（默认’男’）等</p>
+<h2 id="检查"><a href="#检查" class="headerlink" title="检查"></a>检查</h2><p>check：确保字段的值满足指定的条件表达式</p>
+<p>使用场景：用于限制数值范围或复杂条件，如年龄（18 - 100）、价格（大于0）等</p>
+<h2 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h2><p> foreign key：简历表与表之间的关联关系，确保引用完整性。</p>
+<h2 id="自增"><a href="#自增" class="headerlink" title="自增"></a>自增</h2><p>auto_increment：插入数据时自动产生一个唯一的递增值</p>
+<p>使用场景：常用于主键的生成策略</p>
+<h3 id="创建表之后添加自动增长"><a href="#创建表之后添加自动增长" class="headerlink" title="创建表之后添加自动增长"></a>创建表之后添加自动增长</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter table</span> 表名 change id id <span class="type">int</span> auto_increment;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除表中所有数据，主键自增序列不清零"><a href="#删除表中所有数据，主键自增序列不清零" class="headerlink" title="删除表中所有数据，主键自增序列不清零"></a>删除表中所有数据，主键自增序列不清零</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除表中所有数据，主键自增序列清零"><a href="#删除表中所有数据，主键自增序列清零" class="headerlink" title="删除表中所有数据，主键自增序列清零"></a>删除表中所有数据，主键自增序列清零</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">truncate</span> <span class="keyword">table</span> 表名;</span><br></pre></td></tr></table></figure>
+
+<p>注意**：</p>
+<p>在设置主键自增之后，insert数据时，如果不设置主键，或主键设置为0或NULL，数据库会自动维护主键的值。</p>
 
         </div>
 
@@ -232,13 +253,13 @@
                 
                     <p class="copyright-item">
                         <span>Author:</span>
-                        <span>John Doe</span>
+                        <span>睡个好觉</span>
                     </p>
                 
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2026/03/18/%E6%B5%8B%E8%AF%95/">http://example.com/2026/03/18/%E6%B5%8B%E8%AF%95/</a></span>
+                        <span><a href="http://example.com/2026/03/18/%E7%BA%A6%E6%9D%9F/">http://example.com/2026/03/18/%E7%BA%A6%E6%9D%9F/</a></span>
                     </p>
                 
                 
@@ -261,12 +282,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/test/"># test</a>
-                    
-                        <a href="/tags/tag2/"># tag2</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -277,8 +292,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2026/03/18/MySQL%E5%87%BD%E6%95%B0/">MySQL函数</a>
             
-            <a class="next" rel="next" href="/2026/03/16/hello-world/">Hello World</a>
+            
+            <a class="next" rel="next" href="/2026/03/18/SQL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">SQL基本语法</a>
             
         </section>
 
@@ -289,7 +306,7 @@
             </div>
             <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© 睡个好觉 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
 
